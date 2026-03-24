@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.1.1] - 2026-03-24
+
+### Changed
+
+- README: document full `config.yaml` shape (all keys, comments, and library example loading YAML).
+
 ## [0.1.0] - 2025-03-24
 
 ### Added
@@ -27,5 +33,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ordered emission of compacted groups by earliest timestamp / stream sequence.
 - GPL-3.0-only license.
 
-[Unreleased]: https://github.com/NikhilBudaniya/log-compactor/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/NikhilBudaniya/log-compactor/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/NikhilBudaniya/log-compactor/releases/tag/v0.1.1
 [0.1.0]: https://github.com/NikhilBudaniya/log-compactor/releases/tag/v0.1.0
