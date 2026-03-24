@@ -1,0 +1,18 @@
+dedup_window_seconds: 5
+error_threshold: 2
+
+# Optional Regex Pattern. If it fails, the tool falls back to key=value parsing.
+log_pattern: '^(?P<ts>\S+)\s+(?P<level>\S+)\s+(?P<action>login|logout|upload)\s+(?P<user>\S+)$'
+
+# How the output should look. 
+# {fields} will automatically inject any key=value pairs it finds.
+output_template: "{ts} [{level}] {fields}"
+
+aliases:
+  user_id: "user"
+
+level_overrides:
+  - field: "code"
+    min: 500
+    max: 599
+    new_level: "ERROR"
