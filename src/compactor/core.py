@@ -94,6 +94,22 @@ class SmartCompactor:
         field_key = tuple(sorted(entry.fields.items()))
         return (entry.level, field_key)
 
+    def _flush_expired_groups(
+        self, groups: Dict, pending: list, current_ts: datetime
+    ) -> Generator[str, None, None]:
+        """Emit groups older than dedup_window_seconds (no duplicates seen in that time)."""
+        expired_sigs = []
+        for sig, group in groups.items():
+            age = (current_ts - group["start_ts"]).total_seconds()
+            if age > self.window:
+                expired_sigs.append(sig)
+
+        for sig in expired_sigs:
+            g = groups.pop(sig)
+            heapq.heappush(pending, (g["start_ts"], g["seq"], g))
+
+        yield from self._emit_ready_groups(pending, groups)
+
     def _emit_ready_groups(
         self, pending: list, groups: Dict[Signature, Any]
     ) -> Generator[str, None, None]:
@@ -128,6 +144,9 @@ class SmartCompactor:
                 yield from self._emit_ready_groups(pending, groups)
                 yield entry
                 continue
+
+            # Check if any groups have expired (no duplicates in dedup_window_seconds)
+            yield from self._flush_expired_groups(groups, pending, entry.ts)
 
             sig = self._generate_signature(entry)
 

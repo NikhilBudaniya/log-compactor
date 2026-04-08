@@ -1,6 +1,8 @@
 # Log Compactor
 
-A real-time, configurable log deduplication and compaction utility. It supports dynamic regex parsing, key-value extraction, raw pass-through for unstructured lines, time-window deduplication, and error escalation.
+**Log Compactor** merges duplicate log lines and compacts repeated structured events in real time. Use it as a **Python library** or **`logcompact` CLI** to process **stdin/stdout** (e.g. `your-app | logcompact stream`), with **YAML configuration**, optional **regex** parsing, **key=value** fallback, and raw pass-through for stack traces. Features include **time-window deduplication**, **ERROR → CRITICAL** escalation, HTTP-style **level overrides**, and **field aliases**.
+
+If you are looking for **log deduplication**, **log compaction**, **pipe-friendly log tools**, or **reduce noisy logs** in development and CI, this package is a small, configurable building block.
 
 ## Installation
 
@@ -38,6 +40,7 @@ The CLI loads a YAML file into the same structure `SmartCompactor` expects as a 
 
 ```yaml
 # Seconds: identical structured lines (same level + fields) within this span are compacted together.
+# If no duplicates arrive within this window, the group is emitted (enabling real-time output).
 dedup_window_seconds: 5
 
 # If the level is ERROR and the same message repeats at least this many times in one group, output shows CRITICAL.

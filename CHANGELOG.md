@@ -36,3 +36,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [Unreleased]: https://github.com/NikhilBudaniya/log-compactor/compare/v0.1.1...HEAD
 [0.1.1]: https://github.com/NikhilBudaniya/log-compactor/releases/tag/v0.1.1
 [0.1.0]: https://github.com/NikhilBudaniya/log-compactor/releases/tag/v0.1.0
+
+## [0.2.0] - 2026-04-08
+
+### Fixed
+
+- `dedup_window_seconds` now acts as a true timeout: buffered groups are emitted if no duplicates arrive within the window,
+enabling real-time output for logs with unique signatures (e.g., API requests).

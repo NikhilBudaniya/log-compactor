@@ -22,7 +22,9 @@ def stream(config):
         with open(config, 'r') as f:
             settings = yaml.safe_load(f)
     except FileNotFoundError:
-        err_console.print(f"[bold red]Error:[/bold red] '{config}' not found.")
+        err_console.print(f"[bold red]Error:[/bold red] Config file '{config}' not found.")
+        err_console.print(f"[yellow]Create a config.yaml in your project directory or use:[/yellow]")
+        err_console.print(f"  logcompact stream -c /path/to/your/config.yaml")
         sys.exit(1)
 
     compactor = SmartCompactor(settings)
