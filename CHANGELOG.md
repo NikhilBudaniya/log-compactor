@@ -7,13 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-### Changed
+## [0.2.0] - 2026-04-08
 
 ### Fixed
 
-### Removed
+- `dedup_window_seconds` now acts as a true timeout: buffered groups are emitted if no duplicates arrive within the window, enabling real-time output for logs with unique signatures (e.g., API requests).
 
 ## [0.1.1] - 2026-03-24
 
@@ -33,13 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ordered emission of compacted groups by earliest timestamp / stream sequence.
 - GPL-3.0-only license.
 
-[Unreleased]: https://github.com/NikhilBudaniya/log-compactor/compare/v0.1.1...HEAD
-[0.1.1]: https://github.com/NikhilBudaniya/log-compactor/releases/tag/v0.1.1
+[Unreleased]: https://github.com/NikhilBudaniya/log-compactor/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/NikhilBudaniya/log-compactor/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/NikhilBudaniya/log-compactor/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/NikhilBudaniya/log-compactor/releases/tag/v0.1.0
-
-## [0.2.0] - 2026-04-08
-
-### Fixed
-
-- `dedup_window_seconds` now acts as a true timeout: buffered groups are emitted if no duplicates arrive within the window,
-enabling real-time output for logs with unique signatures (e.g., API requests).
